@@ -1,0 +1,525 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.intro {
+    font-size: 1.1rem;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-container {
+    position: relative;
+}
+
+#searchInput {
+    background: #222;
+    border: 2px solid #444;
+    color: #fff;
+    padding: 12px 40px 12px 16px;
+    border-radius: 25px;
+    font-size: 1rem;
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.clear-btn:hover {
+    color: #fff;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-container label {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+#categoryFilter {
+    background: #222;
+    border: 2px solid #444;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#categoryFilter:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #111;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #555;
+}
+
+/* Element category colors */
+.alkali-metals { background-color: #ff6b6b; }
+.alkaline-earth-metals { background-color: #ffd93d; }
+.transition-metals { background-color: #6bcf7f; }
+.post-transition-metals { background-color: #4ecdc4; }
+.metalloids { background-color: #45b7d1; }
+.nonmetals { background-color: #96ceb4; }
+.halogens { background-color: #feca57; }
+.noble-gases { background-color: #ff9ff3; }
+.lanthanides { background-color: #54a0ff; }
+.actinides { background-color: #5f27cd; }
+
+/* Periodic Table Grid */
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 2px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #111;
+    border-radius: 12px;
+    border: 1px solid #333;
+    min-height: 600px;
+}
+
+/* Element styles */
+.element {
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    min-height: 80px;
+    opacity: 1;
+}
+
+.element:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+.element:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.element.filtered-out {
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.element.hidden {
+    display: none;
+}
+
+.atomic-number {
+    font-size: 0.7rem;
+    color: #888;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+}
+
+.element-symbol {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 8px 0 4px 0;
+}
+
+.element-name {
+    font-size: 0.7rem;
+    color: #ccc;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Apply category colors to elements */
+.element.alkali-metals { border-color: #ff6b6b; }
+.element.alkali-metals:hover { border-color: #ff6b6b; box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3); }
+
+.element.alkaline-earth-metals { border-color: #ffd93d; }
+.element.alkaline-earth-metals:hover { border-color: #ffd93d; box-shadow: 0 8px 25px rgba(255, 217, 61, 0.3); }
+
+.element.transition-metals { border-color: #6bcf7f; }
+.element.transition-metals:hover { border-color: #6bcf7f; box-shadow: 0 8px 25px rgba(107, 207, 127, 0.3); }
+
+.element.post-transition-metals { border-color: #4ecdc4; }
+.element.post-transition-metals:hover { border-color: #4ecdc4; box-shadow: 0 8px 25px rgba(78, 205, 196, 0.3); }
+
+.element.metalloids { border-color: #45b7d1; }
+.element.metalloids:hover { border-color: #45b7d1; box-shadow: 0 8px 25px rgba(69, 183, 209, 0.3); }
+
+.element.nonmetals { border-color: #96ceb4; }
+.element.nonmetals:hover { border-color: #96ceb4; box-shadow: 0 8px 25px rgba(150, 206, 180, 0.3); }
+
+.element.halogens { border-color: #feca57; }
+.element.halogens:hover { border-color: #feca57; box-shadow: 0 8px 25px rgba(254, 202, 87, 0.3); }
+
+.element.noble-gases { border-color: #ff9ff3; }
+.element.noble-gases:hover { border-color: #ff9ff3; box-shadow: 0 8px 25px rgba(255, 159, 243, 0.3); }
+
+.element.lanthanides { border-color: #54a0ff; }
+.element.lanthanides:hover { border-color: #54a0ff; box-shadow: 0 8px 25px rgba(84, 160, 255, 0.3); }
+
+.element.actinides { border-color: #5f27cd; }
+.element.actinides:hover { border-color: #5f27cd; box-shadow: 0 8px 25px rgba(95, 39, 205, 0.3); }
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.modal.active,
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-content {
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+    z-index: 1;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.element-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.element-header .element-symbol {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    min-width: 100px;
+}
+
+.element-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+
+.element-info p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.element-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #ccc;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .periodic-table {
+        font-size: 0.9rem;
+    }
+    
+    .element {
+        min-height: 70px;
+        padding: 6px;
+    }
+    
+    .element-symbol {
+        font-size: 1.2rem;
+    }
+    
+    .element-name {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #searchInput {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .legend {
+        gap: 15px;
+    }
+    
+    .legend-item {
+        font-size: 0.8rem;
+    }
+    
+    .periodic-table {
+        gap: 1px;
+        padding: 15px;
+    }
+    
+    .element {
+        min-height: 60px;
+        padding: 4px;
+    }
+    
+    .element-symbol {
+        font-size: 1rem;
+    }
+    
+    .element-name {
+        font-size: 0.6rem;
+    }
+    
+    .atomic-number {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .intro {
+        font-size: 1rem;
+    }
+    
+    .legend {
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .element-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .element-header .element-symbol {
+        font-size: 3rem;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .modal {
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .element,
+    .modal,
+    .modal-overlay,
+    #searchInput,
+    #categoryFilter {
+        transition: none;
+    }
+    
+    .element:hover {
+        transform: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .element {
+        border-width: 3px;
+    }
+    
+    .element:focus {
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+    }
+}

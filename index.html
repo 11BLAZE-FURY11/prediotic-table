@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Periodic Table</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Interactive Periodic Table</h1>
+            <p class="intro">Explore the 118 chemical elements with detailed information and interactive features</p>
+        </header>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search elements..." aria-label="Search elements">
+                <button id="clearSearch" class="clear-btn" aria-label="Clear search">×</button>
+            </div>
+            
+            <div class="filter-container">
+                <label for="categoryFilter">Filter by category:</label>
+                <select id="categoryFilter" aria-label="Filter by element category">
+                    <option value="all">All Elements</option>
+                    <option value="alkali-metals">Alkali Metals</option>
+                    <option value="alkaline-earth-metals">Alkaline Earth Metals</option>
+                    <option value="transition-metals">Transition Metals</option>
+                    <option value="post-transition-metals">Post-transition Metals</option>
+                    <option value="metalloids">Metalloids</option>
+                    <option value="nonmetals">Nonmetals</option>
+                    <option value="halogens">Halogens</option>
+                    <option value="noble-gases">Noble Gases</option>
+                    <option value="lanthanides">Lanthanides</option>
+                    <option value="actinides">Actinides</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color alkali-metals"></div>
+                <span>Alkali Metals</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color alkaline-earth-metals"></div>
+                <span>Alkaline Earth</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color transition-metals"></div>
+                <span>Transition Metals</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color post-transition-metals"></div>
+                <span>Post-transition</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color metalloids"></div>
+                <span>Metalloids</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color nonmetals"></div>
+                <span>Nonmetals</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color halogens"></div>
+                <span>Halogens</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color noble-gases"></div>
+                <span>Noble Gases</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color lanthanides"></div>
+                <span>Lanthanides</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color actinides"></div>
+                <span>Actinides</span>
+            </div>
+        </div>
+
+        <!-- Periodic Table -->
+        <div class="periodic-table" id="periodicTable" role="grid" aria-label="Periodic table of elements">
+        </div>
+
+        <!-- Modal -->
+        <div id="elementModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal" aria-label="Close modal">×</button>
+                <div class="modal-body">
+                    <div class="element-header">
+                        <div class="element-symbol" id="modalSymbol"></div>
+                        <div class="element-info">
+                            <h2 id="modalTitle"></h2>
+                            <p id="modalAtomicNumber"></p>
+                        </div>
+                    </div>
+                    <div class="element-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Atomic Mass:</span>
+                            <span id="modalAtomicMass"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Category:</span>
+                            <span id="modalCategory"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Electron Configuration:</span>
+                            <span id="modalElectronConfig"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Phase at Room Temperature:</span>
+                            <span id="modalPhase"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Discovered:</span>
+                            <span id="modalDiscovered"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="modalOverlay" class="modal-overlay"></div>
+    </div>
+
+    <script src="elements-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
